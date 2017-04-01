@@ -7,14 +7,8 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var groups = require('./routes/groups');
-var contents = require('./routes/contents');
-var contentsGroups = require('./routes/contentsGroups');
 
 var configDb=require('./config/db');
-
-// var mongoose = require('mongoose');
-// mongoose.connect(configDb.url+configDb.name);
 
 var app = express();
 
@@ -32,9 +26,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/users', users);
-app.use('/groups', groups);
-app.use('/contents', contents);
-app.use('/contentsGroups', contentsGroups);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
