@@ -7,7 +7,9 @@
 * **Angular4**
 * **NodeJs**
 
+## Informacion
 
+Esta pequeña plantilla de aplicacion esta en base la templeta [Coreui Free Booststrap Admin Template](https://github.com/mrholek/CoreUI-Free-Bootstrap-Admin-Template)
 ## Instalacion
 
 ```
