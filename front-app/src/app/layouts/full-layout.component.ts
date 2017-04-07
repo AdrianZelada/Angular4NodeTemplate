@@ -1,10 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
+import {menuService} from '../dynamic-components/sidebar/menu-sidebar.service'
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './full-layout.component.html'
 })
 export class FullLayoutComponent implements OnInit {
+
+  menus:any[]=[];
+  constructor(private poolM : menuService){}
 
   public disabled: boolean = false;
   public status: {isopen: boolean} = {isopen: false};
@@ -19,5 +24,35 @@ export class FullLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+    //
+    // this.menus=[
+    //   {
+    //     path:'/dashboard',
+    //     icon:'fa fa-home',
+    //     label:'Dashboard',
+    //   },
+    //   {
+    //     path:'/suma',
+    //     icon:'fa fa-th-large',
+    //     label:'Suma',
+    //     children:[
+    //       {
+    //         path:'/suma/registroDEX',
+    //         icon:'fa fa-home',
+    //         label:'registroDEX'
+    //       },
+    //       {
+    //         path:'/suma/envioTIF',
+    //         icon:'fa fa-bar-chart',
+    //         label:'envioTIF'
+    //       },
+    //     ]
+    //   },
+    // ];
+    this.poolM.eventMenu.subscribe((data)=>{
+      this.menus=data;
+    })
+  }
 }

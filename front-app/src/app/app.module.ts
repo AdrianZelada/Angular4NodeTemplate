@@ -12,6 +12,7 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
+import {menuService} from './dynamic-components/sidebar/menu-sidebar.service'
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
@@ -19,13 +20,18 @@ import { AppRoutingModule } from './app.routing';
 import { FullLayoutComponent } from './layouts/full-layout.component';
 import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
+// Sidebar
+
+import {DynamicComponentsModule} from './dynamic-components/components.module'
+
 @NgModule({
   imports: [
     BrowserModule,
     AppRoutingModule,
     DropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    DynamicComponentsModule
   ],
   declarations: [
     AppComponent,
@@ -34,12 +40,13 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
     NAV_DROPDOWN_DIRECTIVES,
     BreadcrumbsComponent,
     SIDEBAR_TOGGLE_DIRECTIVES,
-    AsideToggleDirective,
+    AsideToggleDirective
   ],
   providers: [{
     provide: LocationStrategy,
     useClass: HashLocationStrategy
-  }],
+  },
+    menuService],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

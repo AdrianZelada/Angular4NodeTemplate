@@ -1,7 +1,7 @@
 <header class="app-header navbar">
   <button class="navbar-toggler mobile-sidebar-toggler hidden-lg-up" type="button">&#9776;</button>
   <a class="navbar-brand" href="#"></a>
-  
+
   <ul class="nav navbar-nav hidden-md-down">
     <li class="nav-item">
       <a class="nav-link navbar-toggler sidebar-toggler" href="#">&#9776;</a>
@@ -55,7 +55,7 @@
       <a class="nav-link navbar-toggler aside-menu-toggler" href="#">&#9776;</a>
     </li>
   </ul>
-  
+
 </header>
 
 <div class="app-body">
@@ -65,7 +65,13 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" [routerLink]="['/dashboard']"><i class="icon-speedometer"></i> Dashboard <span class="badge badge-info">NEW</span></a>
         </li>
-        
+
+
+        <li [className]="itemMenu.children ? 'nav-item nav-dropdown': 'nav-item'"
+            *ngFor="let itemMenu of menus; let ind=index" routerLinkActive="open"
+            menu-sidebar [menu]="itemMenu" [isParent]="itemMenu.children != undefined ">
+        </li>
+
         <li class="divider"></li>
         <li class="nav-title">
           UI Elements
@@ -137,7 +143,7 @@
             </li>
           </ul>
         </li>
-        
+
       </ul>
     </nav>
   </div>
@@ -148,7 +154,7 @@
     <!-- Breadcrumb -->
     <ol class="breadcrumb">
       <breadcrumbs></breadcrumbs>
-      
+
       <!-- Breadcrumb Menu-->
       <li class="breadcrumb-menu hidden-md-down">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
@@ -157,7 +163,7 @@
           <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;Settings</a>
         </div>
       </li>
-      
+
     </ol>
 
     <div class="container-fluid">
