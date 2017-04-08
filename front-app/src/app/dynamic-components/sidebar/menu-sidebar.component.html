@@ -5,14 +5,12 @@
   <i [class]="menuItem.icon"></i>
   {{menuItem.label}}
 </a>
-
 <a class="nav-link nav-dropdown-toggle"
    *ngIf="isParent"
    (click)="open($event)">
   <i [class]="menuItem.icon"></i>
   {{menuItem.label}}
 </a>
-
 <ul *ngIf="menuItem.children" class="nav-dropdown-items">
   <li [className]="itemMenu.children ? 'nav-item nav-dropdown': 'nav-item'" routerLinkActive="open"
       *ngFor="let itemMenu of menuItem.children ; let ind=index" menu-sidebar [menu]="itemMenu" [isParent]="itemMenu.children != undefined ">
