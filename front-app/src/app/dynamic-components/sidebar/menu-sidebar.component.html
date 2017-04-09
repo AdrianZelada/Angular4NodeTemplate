@@ -5,7 +5,7 @@
   <i [class]="menuItem.icon"></i>
   {{menuItem.label}}
 </a>
-<a class="nav-link nav-dropdown-toggle"
+<a class="nav-link" [ngClass]="{'nav-dropdown-toggle':menuItem.path=='.'}"
    *ngIf="isParent"
    (click)="open($event)">
   <i [class]="menuItem.icon"></i>
