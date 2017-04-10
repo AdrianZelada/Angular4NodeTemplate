@@ -1,17 +1,20 @@
 <a class="nav-link"
    routerLinkActive="active"
    [routerLink]="menuItem.path"
-   *ngIf="!isParent">
+   *ngIf="!isParent && menuItem.inMenu">
   <i [class]="menuItem.icon"></i>
   {{menuItem.label}}
 </a>
+
 <a class="nav-link" [ngClass]="{'nav-dropdown-toggle':menuItem.path=='.'}"
-   *ngIf="isParent"
+   *ngIf="isParent && menuItem.inMenu"
+   [routerLink]="menuItem.path"
    (click)="open($event)">
   <i [class]="menuItem.icon"></i>
   {{menuItem.label}}
 </a>
-<ul *ngIf="menuItem.children" class="nav-dropdown-items">
+
+<ul *ngIf="menuItem.children && menuItem.inMenu" class="nav-dropdown-items">
   <li [className]="itemMenu.children ? 'nav-item nav-dropdown': 'nav-item'" routerLinkActive="open"
       *ngFor="let itemMenu of menuItem.children ; let ind=index" menu-sidebar [menu]="itemMenu" [isParent]="itemMenu.children != undefined ">
   </li>
