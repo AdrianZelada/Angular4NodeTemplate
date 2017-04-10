@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import {menuService} from '../dynamic-components/sidebar/menu-sidebar.service'
+// import {menuService} from '../dynamic-components/sidebar/menu-sidebar.service'
+
+import {MenuService} from '../segurity/menu.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +11,7 @@ import {menuService} from '../dynamic-components/sidebar/menu-sidebar.service'
 export class FullLayoutComponent implements OnInit {
 
   menus:any[]=[];
-  constructor(private poolM : menuService){}
+  constructor(private menuService : MenuService){}
 
   public disabled: boolean = false;
   public status: {isopen: boolean} = {isopen: false};
@@ -51,7 +53,7 @@ export class FullLayoutComponent implements OnInit {
     //     ]
     //   },
     // ];
-    this.poolM.eventMenu.subscribe((data)=>{
+    this.menuService.eventMenu.subscribe((data)=>{
       this.menus=data;
     })
   }

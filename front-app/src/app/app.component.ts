@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {menuService} from './dynamic-components/sidebar/menu-sidebar.service'
+
+import { MenuService} from './segurity/menu.service'
 
 @Component({
   // tslint:disable-next-line
@@ -9,37 +10,48 @@ import {menuService} from './dynamic-components/sidebar/menu-sidebar.service'
 export class AppComponent implements OnInit{
 
   menus:any[]=[];
-  constructor(private poolM : menuService){
+  constructor(private menuService : MenuService){
 
   }
 
   ngOnInit(){
     this.menus=[
       {
-        path:'/dashboard',
-        icon:'fa fa-home',
-        label:'Dashboard',
+        "path":"/dashboard",
+        "icon":"fa fa-home",
+        "componentPath":"/dashboard",
+        "label":"Dashboard",
+        "inMenu":true
       },
       {
-        path:'/components',
-        icon:'fa fa-th-large',
-        label:'Components',
-        children:[
+        "path":"/",
+        "icon":"fa fa-th-large",
+        "componentPath":"/components",
+        "label":"Components",
+        "permission":true,
+        "inMenu":true,
+        "children":[
           {
-            path:'/components/buttons',
-            icon:'fa fa-home',
-            label:'Buttons'
+            "path":"/components/buttons",
+            "componentPath":"/components/buttons",
+            "icon":"fa fa-home",
+            "label":"Buttons",
+            "permission":false,
+            "inMenu":false
           },
           {
-            path:'/components/social-buttons',
-            icon:'fa fa-bar-chart',
-            label:'Social Buttons'
-          },
+            "path":"/components/social-buttons",
+            "componentPath":"/components/social-buttons",
+            "icon":"fa fa-bar-chart",
+            "label":"Social Buttons",
+            "permission":true,
+            "inMenu":false
+          }
         ]
-      },
+      }
     ];
     setTimeout(()=>{
-      this.poolM.setMenus(this.menus)
+      this.menuService.setMenus(this.menus)
     },1000)
 
   }

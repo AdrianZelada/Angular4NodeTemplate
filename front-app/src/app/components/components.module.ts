@@ -22,12 +22,16 @@ import { TabsComponent } from './tabs.component';
 // Components Routing
 import { ComponentsRoutingModule } from './components-routing.module';
 
+// Auth
+import { AuthModule} from '../segurity/auth.module';
+
 @NgModule({
   imports: [
     ComponentsRoutingModule,
     DropdownModule.forRoot(),
     ModalModule.forRoot(),
-    TabsModule
+    TabsModule,
+    AuthModule
   ],
   declarations: [
     ButtonsComponent,

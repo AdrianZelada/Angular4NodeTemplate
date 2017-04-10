@@ -24,6 +24,11 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import {DynamicComponentsModule} from './dynamic-components/components.module'
 
+import { AuthModule} from './segurity/auth.module';
+import { SegurityService} from './segurity/auth.module.service';
+import { MenuService} from './segurity/menu.service';
+
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -31,7 +36,8 @@ import {DynamicComponentsModule} from './dynamic-components/components.module'
     DropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
-    DynamicComponentsModule
+    DynamicComponentsModule,
+    AuthModule
   ],
   declarations: [
     AppComponent,
@@ -46,7 +52,18 @@ import {DynamicComponentsModule} from './dynamic-components/components.module'
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-    menuService],
+    // menuService
+    SegurityService,
+    [{
+      provide:MenuService,
+      useFactory:()=> {
+        return new MenuService((obj:any,action?:string) : boolean=>{
+          console.log(action);
+          return obj.permission;
+        });
+      }
+    }]
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
