@@ -37,7 +37,7 @@ export class AppComponent implements OnInit{
             "icon":"fa fa-home",
             "label":"Buttons",
             "permission":false,
-            "inMenu":false
+            "inMenu":true
           },
           {
             "path":"/components/social-buttons",
@@ -45,7 +45,8 @@ export class AppComponent implements OnInit{
             "icon":"fa fa-bar-chart",
             "label":"Social Buttons",
             "permission":true,
-            "inMenu":false
+            "inMenu":true
+
           }
         ]
       }
