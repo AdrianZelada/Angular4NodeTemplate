@@ -24,9 +24,10 @@ import { SimpleLayoutComponent } from './layouts/simple-layout.component';
 
 import {DynamicComponentsModule} from './dynamic-components/components.module'
 
-import { AuthModule} from './segurity/auth.module';
-import { SegurityService} from './segurity/auth.module.service';
-import { MenuService} from './segurity/menu.service';
+import { AuthModule} from './security/auth.module';
+import { SegurityService} from './security/auth.module.service';
+import { MenuService} from './security/menu.service';
+import { InterceptPath} from './security/intercept-path.service';
 
 
 @NgModule({
@@ -52,16 +53,16 @@ import { MenuService} from './segurity/menu.service';
     provide: LocationStrategy,
     useClass: HashLocationStrategy
   },
-    // menuService
+    MenuService,
     SegurityService,
     [{
-      provide:MenuService,
-      useFactory:()=> {
-        return new MenuService((obj:any,action?:string) : boolean=>{
-          console.log(action);
-          return obj.permission;
+      provide:InterceptPath,
+      useFactory:(menuService : MenuService)=> {
+        return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
+            return obj.permission;
         });
-      }
+      },
+      deps:[MenuService]
     }]
   ],
   bootstrap: [ AppComponent ]

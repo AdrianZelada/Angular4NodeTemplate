@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 // import {menuService} from '../dynamic-components/sidebar/menu-sidebar.service'
 
-import {MenuService} from '../segurity/menu.service'
+import {MenuService} from '../security/menu.service'
 
 @Component({
   selector: 'app-dashboard',
@@ -27,32 +27,6 @@ export class FullLayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    //
-    // this.menus=[
-    //   {
-    //     path:'/dashboard',
-    //     icon:'fa fa-home',
-    //     label:'Dashboard',
-    //   },
-    //   {
-    //     path:'/suma',
-    //     icon:'fa fa-th-large',
-    //     label:'Suma',
-    //     children:[
-    //       {
-    //         path:'/suma/registroDEX',
-    //         icon:'fa fa-home',
-    //         label:'registroDEX'
-    //       },
-    //       {
-    //         path:'/suma/envioTIF',
-    //         icon:'fa fa-bar-chart',
-    //         label:'envioTIF'
-    //       },
-    //     ]
-    //   },
-    // ];
     this.menuService.eventMenu.subscribe((data)=>{
       this.menus=data;
     })

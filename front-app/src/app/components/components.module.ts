@@ -23,7 +23,7 @@ import { TabsComponent } from './tabs.component';
 import { ComponentsRoutingModule } from './components-routing.module';
 
 // Auth
-import { AuthModule} from '../segurity/auth.module';
+import { AuthModule} from '../security/auth.module';
 
 @NgModule({
   imports: [

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MenuService} from './segurity/menu.service'
+import { MenuService} from './security/menu.service'
 
 @Component({
   // tslint:disable-next-line
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit{
         "inMenu":true
       },
       {
-        "path":"/",
+        "path":".",
         "icon":"fa fa-th-large",
         "componentPath":"/components",
         "label":"Components",

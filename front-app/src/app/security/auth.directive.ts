@@ -1,9 +1,9 @@
 /**
  * Created by iZel on 4/4/17.
  */
-import {Component,ElementRef,OnInit, Input, Inject} from "@angular/core";
+import {Component,ElementRef,OnInit, Input} from "@angular/core";
 import {Location} from '@angular/common';
-import { MenuService} from './menu.service'
+import { InterceptPath} from './intercept-path.service';
 
 @Component({
   selector:'[auth]',
@@ -14,15 +14,13 @@ import { MenuService} from './menu.service'
 export class AuthDirective implements OnInit{
   @Input() path? :string;
   @Input() action? :string;
-  constructor(public el:ElementRef , public menuService:MenuService,public location:Location){
-  // constructor(private el:ElementRef ,  @Inject(MenuService) private menuService:MenuService ,private location:Location){
-  }
+  constructor(public el:ElementRef , public interceptPath:InterceptPath,public location:Location){}
 
   ngOnInit(){
     let path=this.path ? this.path : this.location.path();
-    let authDirec =this.menuService.getStatePath(path);
+    let authDirec =this.interceptPath.getStatePath(path);
 
-    if(!this.menuService.validPath(authDirec,this.action)){
+    if(!this.interceptPath.validPath(authDirec,this.action)){
       this.el.nativeElement.remove();
     }
   }
@@ -37,8 +35,8 @@ export class AuthDirectiveSave extends AuthDirective implements OnInit{
 
   action:string='save';
 
-  constructor(public el:ElementRef , public menuService:MenuService,public location:Location){
-    super(el,menuService,location);
+  constructor(public el:ElementRef , public interceptPath:InterceptPath,public location:Location){
+    super(el,interceptPath,location);
   }
   ngOnInit(){
     super.ngOnInit()

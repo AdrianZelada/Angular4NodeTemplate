@@ -3,7 +3,8 @@
  */
 import { Injectable,Inject }     from '@angular/core';
 import { CanActivate,Router,ActivatedRouteSnapshot, RouterStateSnapshot}    from '@angular/router';
-import { MenuService} from './menu.service'
+import { MenuService} from './menu.service';
+import { InterceptPath} from './intercept-path.service'
 
 import {Auth} from './auth.service';
 
@@ -11,14 +12,11 @@ import {Auth} from './auth.service';
 
 export class AuthGuard implements CanActivate {
 
-  constructor(private menuService:MenuService, private router: Router,private auth :Auth){
-  // constructor(@Inject(MenuService) private menuService : MenuService, private router: Router,private auth :Auth){
-
-  }
+  constructor(private interceptPath:InterceptPath, private router: Router,private auth :Auth){}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    console.log(this.menuService)
-    let status = this.menuService.viewPath(state.url);
+    console.log(this.interceptPath)
+    let status = this.interceptPath.viewPath(state.url);
     if(!status){
       this.router.navigate(['./pages/login']);
     }
