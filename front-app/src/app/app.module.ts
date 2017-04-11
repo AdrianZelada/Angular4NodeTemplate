@@ -29,6 +29,11 @@ import { SegurityService} from './security/auth.module.service';
 import { MenuService} from './security/menu.service';
 import { InterceptPath} from './security/intercept-path.service';
 
+export function interceptFactory(menuService : MenuService){
+  return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
+    return obj.permission
+  })
+}
 
 @NgModule({
   imports: [
@@ -57,11 +62,12 @@ import { InterceptPath} from './security/intercept-path.service';
     SegurityService,
     [{
       provide:InterceptPath,
-      useFactory:(menuService : MenuService)=> {
-        return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
-            return obj.permission;
-        });
-      },
+      // useFactory:(menuService : MenuService)=> {
+      //   return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
+      //       return obj.permission;
+      //   });
+      // },
+      useFactory:interceptFactory,
       deps:[MenuService]
     }]
   ],
