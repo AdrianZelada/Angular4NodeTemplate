@@ -62,11 +62,6 @@ export function interceptFactory(menuService : MenuService){
     SegurityService,
     [{
       provide:InterceptPath,
-      // useFactory:(menuService : MenuService)=> {
-      //   return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
-      //       return obj.permission;
-      //   });
-      // },
       useFactory:interceptFactory,
       deps:[MenuService]
     }]
