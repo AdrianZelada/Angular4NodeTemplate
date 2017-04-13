@@ -12,7 +12,6 @@ import { SIDEBAR_TOGGLE_DIRECTIVES } from './shared/sidebar.directive';
 import { AsideToggleDirective } from './shared/aside.directive';
 import { BreadcrumbsComponent } from './shared/breadcrumb.component';
 
-import {menuService} from './dynamic-components/sidebar/menu-sidebar.service'
 // Routing Module
 import { AppRoutingModule } from './app.routing';
 
