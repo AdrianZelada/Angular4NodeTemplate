@@ -29,7 +29,8 @@ import { MenuService} from './security/menu.service';
 import { InterceptPath} from './security/intercept-path.service';
 
 export function interceptFactory(menuService : MenuService){
-  return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
+  // return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
+  return new InterceptPath(menuService ,(obj:any) : boolean=>{
     return obj.permission
   })
 }
