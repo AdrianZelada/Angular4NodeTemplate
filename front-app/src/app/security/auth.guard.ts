@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
   constructor(private interceptPath:InterceptPath, private router: Router,private auth :Auth){}
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 
-    console.log(this.interceptPath)
     let status = this.interceptPath.viewPath(state.url);
     if(!status){
       this.router.navigate(['./pages/login']);
