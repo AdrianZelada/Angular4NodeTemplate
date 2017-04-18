@@ -3,7 +3,5 @@
  */
 import { Auth } from './auth.service';
 import { AuthGuard } from './auth.guard';
-// import { MenuService } from './menu.service';
 
-// export let SegurityService = [Auth, AuthGuard,MenuService ];
 export let SegurityService = [Auth, AuthGuard ];

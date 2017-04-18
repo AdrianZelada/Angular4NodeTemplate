@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-// import {menuService} from '../dynamic-components/sidebar/menu-sidebar.service'
-
 import {MenuService} from '../security/menu.service'
 
 @Component({
