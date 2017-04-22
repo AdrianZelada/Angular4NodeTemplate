@@ -1,18 +1,44 @@
+
 /**
  * Created by iZel on 4/9/17.
  */
-import {Injectable} from "@angular/core";
+import {Injectable,EventEmitter} from "@angular/core";
+
 @Injectable()
 export class Auth{
-  currentState:any={};
 
-  constructor(){}
+  eventIsLogin:EventEmitter<any>=new EventEmitter();
 
-  getState(){
-    return this.currentState;
+  eventCurrentUser:EventEmitter<any>=new EventEmitter();
+
+  user:any=undefined;
+
+  constructor(){
+    let user = localStorage.getItem('user');
+    if(user){
+      this.login(JSON.parse(user))
+    }
   }
 
-  setState(state){
-    this.currentState=state
+  isLogin(){
+    return this.user != undefined;
+  }
+
+  getUser(){
+    return this.user;
+  }
+
+  login(user:any){
+    localStorage.setItem('user',JSON.stringify(user));
+    this.user=user;
+    this.eventCurrentUser.emit(this.user);
+    this.eventIsLogin.emit(true);
+  }
+
+  logout(){
+    localStorage.removeItem('user');
+    this.user=undefined;
+    this.eventCurrentUser.emit(this.user);
+    this.eventIsLogin.emit(false);
   }
 }

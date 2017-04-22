@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuService} from './security/menu.service'
+import { HttpExport} from './services/http-extend.service'
 
 @Component({
   // tslint:disable-next-line
@@ -10,7 +11,7 @@ import { MenuService} from './security/menu.service'
 export class AppComponent implements OnInit{
 
   menus:any[]=[];
-  constructor(private menuService : MenuService){
+  constructor(private menuService : MenuService, private httpExport:HttpExport){
 
   }
 
@@ -54,6 +55,10 @@ export class AppComponent implements OnInit{
     setTimeout(()=>{
       this.menuService.setMenus(this.menus)
     },1000)
+
+    this.httpExport.get('/users/').subscribe((data)=>{
+      console.log(data)
+    })
 
   }
 }

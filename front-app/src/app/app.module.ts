@@ -28,12 +28,20 @@ import { SegurityService} from './security/auth.module.service';
 import { MenuService} from './security/menu.service';
 import { InterceptPath} from './security/intercept-path.service';
 
+import { HttpExport} from './services/http-extend.service';
+
+import { HttpModule, XHRBackend, RequestOptions} from '@angular/http';
+
+
 export function interceptFactory(menuService : MenuService){
   // return new InterceptPath(menuService ,(obj:any,action?:string) : boolean=>{
   return new InterceptPath(menuService ,(obj:any) : boolean=>{
     return obj.permission
   })
 }
+
+
+
 
 @NgModule({
   imports: [
@@ -43,6 +51,7 @@ export function interceptFactory(menuService : MenuService){
     TabsModule.forRoot(),
     ChartsModule,
     DynamicComponentsModule,
+    HttpModule,
     AuthModule
   ],
   declarations: [
@@ -60,6 +69,19 @@ export function interceptFactory(menuService : MenuService){
   },
     MenuService,
     SegurityService,
+
+    [
+      {
+        provide: HttpExport,
+        useFactory: (backend: XHRBackend, options: RequestOptions) => {
+          return new HttpExport(backend, options,{
+            "Content-Type":"application/json",
+            "user":"addrai"
+          });
+        },
+        deps: [XHRBackend, RequestOptions]
+      }
+    ],
     [{
       provide:InterceptPath,
       useFactory:interceptFactory,
